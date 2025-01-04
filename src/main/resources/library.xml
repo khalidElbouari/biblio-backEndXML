@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+    <book>
+        <title>Book Title 1</title>
+        <author>Author 1</author>
+        <year>2000</year>
+        <genre>Fiction</genre>
+        <price>19.99</price>
+        <publisher>Publisher 1</publisher>
+        <description>This is a short description of Book Title 1. It covers the main events and themes of the book.</description>
+        <isbn>978-1-234-56789-0</isbn>
+        <language>English</language>
+        <pages>300</pages>
+    </book>
+    <book>
+        <title>Book Title 2</title>
+        <author>Author 2</author>
+        <year>2005</year>
+        <genre>Non-Fiction</genre>
+        <price>25.99</price>
+        <publisher>Publisher 2</publisher>
+        <description>This book provides detailed insights into a specific topic.</description>
+        <isbn>978-1-234-56789-1</isbn>
+        <language>French</language>
+        <pages>350</pages>
+    </book>
+    <book>
+        <title>Book Title 3</title>
+        <author>Author 3</author>
+        <year>2010</year>
+        <genre>Science Fiction</genre>
+        <price>29.99</price>
+        <publisher>Publisher 3</publisher>
+        <description>A futuristic novel about space exploration and technology.</description>
+        <isbn>978-1-234-56789-2</isbn>
+        <language>Spanish</language>
+        <pages>400</pages>
+    </book>
+    <book>
+        <title>Book Title 4</title>
+        <author>Author 4</author>
+        <year>2015</year>
+        <genre>Fantasy</genre>
+        <price>22.99</price>
+        <publisher>Publisher 4</publisher>
+        <description>A magical story set in a world full of mystical creatures and adventures.</description>
+        <isbn>978-1-234-56789-3</isbn>
+        <language>German</language>
+        <pages>500</pages>
+    </book>
+</library>
