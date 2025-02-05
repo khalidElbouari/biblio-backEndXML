@@ -1,92 +1,22 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <library>
-            
-    
-    <book>
-                        
-        
-        <title>Book Title 1</title>
-                        
-        
-        <author>Author 1</author>
-                        
-        
-        <year>2000</year>
-                        
-        
-        <genre>Fiction</genre>
-                        
-        
-        <price>19.99</price>
-                        
-        
-        <publisher>Publisher 1</publisher>
-                        
-        
-        <description>This is a short description of Book Title 1. It covers the main events and themes of the book.</description>
-                        
-        
-        <isbn>978-1-234-56789-0</isbn>
-                        
-        
-        <language>English</language>
-                        
-        
-        <pages>300</pages>
-                    
-    
-    </book>
-            
-    
-    <book>
-                        
-        
-        <title>Book Title 2</title>
-                        
-        
-        <author>Author 2</author>
-                        
-        
-        <year>2005</year>
-                        
-        
-        <genre>Non-Fiction</genre>
-                        
-        
-        <price>25.99</price>
-                        
-        
-        <publisher>Publisher 2</publisher>
-                        
-        
-        <description>This book provides detailed insights into a specific topic.</description>
-                        
-        
-        <isbn>978-1-234-56789-1</isbn>
-                        
-        
-        <language>French</language>
-                        
-        
-        <pages>350</pages>
-                    
-    
-    </book>
-        
-    
-    <book>
-                
-        <title>test</title>
-                
-        <author>khalid 3 </author>
-                
-        <year>321</year>
-            
-    </book>
-    
-    <book>
-        <title>khalid 100-</title>
-        <author>	fabor</author>
-        <year>2001</year>
-    </book>
+   <book>
+      <title>Book Title 1</title>
+      <author>Author 1</author>
+      <year>2000</year>
+      <genre>Fiction</genre>
+      <price>19.99</price>
+      <publisher>Publisher 1</publisher>
+      <description>This is a short description of Book Title 1. It covers the main events and themes of the book.</description>
+      <isbn>978-1-234-56789-0</isbn>
+      <language>English</language>
+      <pages>300</pages>
+   </book>
+   <book>
+      <title>tst</title>
+      <author>jkhalid</author>
+      <year>567</year>
+      <price>567.0</price>
+      <description>vghbjnmkl;</description>
+   </book>
 </library>
