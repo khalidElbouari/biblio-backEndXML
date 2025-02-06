@@ -1,9 +1,11 @@
 package com.example.bibliobackend.service;
 
 import com.example.bibliobackend.model.Book;
+import com.example.bibliobackend.util.XMLValidator;
 import net.sf.saxon.s9api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -23,11 +25,15 @@ import java.util.*;
 @Service
 public class BookService {
     private static final Logger logger = LoggerFactory.getLogger(BookService.class);
-
     @Value("${library.xml.path}")
-    private String xmlFilePath;  // Ce chemin est utilisé pour le DOM (ex: pour getAllBooks et addBook)
+    private String xmlFilePath;
+    private final XMLValidator xmlValidator;
 
-    // --- Méthodes utilisant le DOM (pour getAllBooks, addBook, etc.) ---
+    @Autowired
+    public BookService(XMLValidator xmlValidator) {
+        this.xmlValidator = xmlValidator;
+    }
+
     public List<Book> getAllBooks() throws Exception {
         File xmlFile = new File(xmlFilePath);
         Document document = parseDocument(xmlFile);
@@ -40,20 +46,28 @@ public class BookService {
         if (!xmlFile.exists()) {
             throw new FileNotFoundException("Le fichier XML est introuvable.");
         }
-        Document document = parseDocument(xmlFile);
-        Element newBook = document.createElement("book");
 
-        appendChildElement(newBook, "title", book.getTitle(), document);
-        appendChildElement(newBook, "author", book.getAuthor(), document);
-        appendChildElement(newBook, "year", String.valueOf(book.getYear()), document);
-        appendChildElement(newBook, "price", String.valueOf(book.getPrice()), document);
-        appendChildElement(newBook, "description", book.getDescription(), document);
+        boolean isValid = xmlValidator.validateXML(xmlFilePath, "src/main/resources/XMLData/books.xsd");
+        if (isValid) {
+            Document document = parseDocument(xmlFile);
+            Element newBook = document.createElement("book");
 
-        NodeList nodeList = document.getElementsByTagName("library");
-        Element library = (Element) nodeList.item(0);
-        library.appendChild(newBook);
+            appendChildElement(newBook, "id", book.getId(), document);
+            appendChildElement(newBook, "title", book.getTitle(), document);
+            appendChildElement(newBook, "author", book.getAuthor(), document);
+            appendChildElement(newBook, "year", String.valueOf(book.getYear()), document);
+            appendChildElement(newBook, "price", String.valueOf(book.getPrice()), document);
+            appendChildElement(newBook, "description", book.getDescription(), document);
 
-        transformDocumentToFile(document, xmlFile);
+            NodeList nodeList = document.getElementsByTagName("library");
+            Element library = (Element) nodeList.item(0);
+            library.appendChild(newBook);
+
+            transformDocumentToFile(document, xmlFile);
+        }else{
+            throw new Exception("Le fichier XML est invalide !");
+
+        }
     }
 
     private Document parseDocument(File xmlFile) throws Exception {
@@ -84,6 +98,7 @@ public class BookService {
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element bookElement = (Element) node;
                 books.add(new Book(
+                       getTagValue(bookElement, "id"),
                         getTagValue(bookElement, "title"),
                         getTagValue(bookElement, "author"),
                         Integer.parseInt(getTagValue(bookElement, "year")),
@@ -114,7 +129,6 @@ public class BookService {
     }
 
     // --- Méthodes utilisant XQuery (pour filtrer les livres) ---
-
     // Pour filtrer par année, par exemple
     public List<Book> getBooksAfterYear(int year) throws Exception {
         Resource resource = new ClassPathResource("XMLData/library.xml");
@@ -149,7 +163,6 @@ public class BookService {
         XQueryExecutable exec = compiler.compile(xquery);
         XQueryEvaluator evaluator = exec.load();
 
-        // Pas besoin de définir un contexte si votre XQuery utilise doc() avec une URI absolue.
         // Exécutez la requête et récupérez le résultat
         XdmValue result = evaluator.evaluate();
 
@@ -157,7 +170,7 @@ public class BookService {
         for (XdmItem item : result) {
             if (item instanceof XdmNode) {
                 XdmNode node = (XdmNode) item;
-                // Vérifiez que le nœud est un élément et que getNodeName() n'est pas null
+                // si le nœud est un élément et que getNodeName() n'est pas null
                 if (node.getNodeKind() == XdmNodeKind.ELEMENT &&
                         node.getNodeName() != null &&
                         "book".equals(node.getNodeName().getLocalName())) {

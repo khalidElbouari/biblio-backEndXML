@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <library>
    <book>
-      <title>Book Title 1</title>
-      <author>Author 1</author>
-      <year>2000</year>
-      <genre>Fiction</genre>
-      <price>19.99</price>
-      <publisher>Publisher 1</publisher>
-      <description>This is a short description of Book Title 1. It covers the main events and themes of the book.</description>
-      <isbn>978-1-234-56789-0</isbn>
-      <language>English</language>
-      <pages>300</pages>
+      <id>e1d0a600-41b6-4b73-9753-1a4c3d504f94</id>
+      <title>Le Seigneur des Anneaux</title>
+      <author>J.R.R. Tolkien</author>
+      <year>1954</year>
+      <price>29.99</price>
+      <description>Un classique de la fantasy où un jeune hobbit entreprend une quête épique pour détruire un anneau maléfique.</description>
    </book>
    <book>
-      <title>tst</title>
-      <author>jkhalid</author>
-      <year>567</year>
-      <price>567.0</price>
-      <description>vghbjnmkl;</description>
+      <id>47bb2b09-76fa-49e6-a36b-cb60740b13c7</id>
+      <title>Harry Potter à l'école des sorciers</title>
+      <author>J.K. Rowling</author>
+      <year>1997</year>
+      <price>15.99</price>
+      <description>Le début des aventures d'un jeune sorcier à l'école de magie Poudlard.</description>
+   </book>
+   <book>
+      <id>6ac37e45-1a93-4e0a-b09e-9f5e58b90a5e</id>
+      <title>Le Petit Prince</title>
+      <author>Antoine de Saint-Exupéry</author>
+      <year>1943</year>
+      <price>9.99</price>
+      <description>Un conte poétique et philosophique sur la vie, l'amour et les relations humaines.</description>
    </book>
 </library>

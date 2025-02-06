@@ -17,24 +17,8 @@ import java.util.Map;
 @RequestMapping("/api/books")
 public class BookController {
     private static final Logger logger = LoggerFactory.getLogger(BookController.class);
-
     @Autowired
     private BookService bookService;
-
-    // Endpoint pour ajouter un livre
-    @PostMapping("/add")
-    public ResponseEntity<Map<String, String>> addBook(@RequestBody Book book) {
-        try {
-
-            System.out.println(book);
-            bookService.addBook(book);
-            // Retourne une réponse JSON avec un message de succès
-            return new ResponseEntity<>(Map.of("message", "Book added successfully!"), HttpStatus.CREATED);
-        } catch (Exception e) {
-            // Retourne une réponse JSON avec un message d'erreur
-            return new ResponseEntity<>(Map.of("error", "Error adding book: " + e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
     // Endpoint pour récupérer tous les livres
     @GetMapping
@@ -45,6 +29,16 @@ public class BookController {
         } catch (Exception e) {
             // Retourne une erreur si la récupération échoue
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<Map<String, String>> addBook(@RequestBody Book book) {
+        try {
+                bookService.addBook(book);
+                return new ResponseEntity<>(Map.of("message", "Book added successfully!"), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(Map.of("error", "Error adding book: " + e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -87,6 +81,5 @@ public class BookController {
                     .body(Map.of("error", "Erreur lors de la suppression du livre: " + e.getMessage()));
         }
     }
-
 
 }

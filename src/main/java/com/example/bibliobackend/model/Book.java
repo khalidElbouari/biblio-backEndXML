@@ -1,5 +1,7 @@
 package com.example.bibliobackend.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.util.UUID;
 
 public class Book {
@@ -16,9 +18,24 @@ public class Book {
     private int pages;
 
     // Constructeur
+    @JsonCreator
     public Book(String title, String author, int year, String genre, double price,
                 String publisher, String description, String isbn, String language, int pages) {
         this.id = UUID.randomUUID().toString(); // Génère un ID unique pour chaque livre
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.genre = genre;
+        this.price = price;
+        this.publisher = publisher;
+        this.description = description;
+        this.isbn = isbn;
+        this.language = language;
+        this.pages = pages;
+    }
+    public Book(String id, String title, String author, int year, String genre, double price,
+                String publisher, String description, String isbn, String language, int pages) {
+        this.id = id; // On garde l'ID existant
         this.title = title;
         this.author = author;
         this.year = year;
